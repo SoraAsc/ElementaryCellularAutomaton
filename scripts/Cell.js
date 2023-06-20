@@ -1,7 +1,10 @@
 class Cell
 {
-    constructor()
+    constructor(state)
     {
-
+        this.state = state
     }
+
+    getState = () => this.state
+    setState = (newValue) => this.state = newValue
 }
