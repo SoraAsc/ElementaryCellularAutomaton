@@ -1,12 +1,13 @@
 class Grid 
 {
-	constructor(cell, cellSize, gridSizeX, gridSizeY, rule) 
+	constructor(cell, cellSize, gridSizeX, gridSizeY, rule, mirror) 
 	{
 		this.cell = cell
 		this.cellSize = cellSize
 		this.gridSizeX = gridSizeX
 		this.gridSizeY = gridSizeY
 		this.rule = rule
+		this.mirror = mirror
 	}
 
 	automaton()
@@ -18,7 +19,9 @@ class Grid
 		}
 		this.cell[this.gridSizeY-1] = this.cell[this.gridSizeY-2]
 		const nextCell = new Array(this.gridSizeX).fill().map(() => new Cell(0))
-		for(let j = 0; j < this.gridSizeX; j++)
+		let startIndex = this.mirror ? 0 : 1
+		let endIndex = this.mirror ? this.gridSizeX : this.gridSizeX - 1
+		for(let j = startIndex; j < endIndex; j++)
 		{
 			const v = this.mapRule([
 				(this.cell[this.gridSizeY-1][this.mod(j-1,this.gridSizeX)]).getState(),
@@ -53,4 +56,7 @@ class Grid
 	mod(n, m) {
 		return ((n % m) + m) % m
 	}
+
+	getCell = () => this.cell
+	setMirror = (newValue) => this.mirror = newValue
 }

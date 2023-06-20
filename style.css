@@ -10,3 +10,23 @@ body {
 canvas {
   display: block;
 }
+
+#container_btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+#grid_options_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#grid_options_container input {
+  width: 80px;
+  text-align: center;
+}
+
+#grid_options_container input::placeholder {
+  text-align: left;
+  font-size: 10px;
+}
